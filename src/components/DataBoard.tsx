@@ -31,7 +31,7 @@ export default function DataBoard() {
     let currentLeft = left;
     let currentRight = right;
     if (currentRight === 0) {
-      console.log("currentRight === 0, set sorted to true")
+      console.log("currentRight === 0, set sorted to true");
       setSorted(true);
       return;
     }
@@ -90,31 +90,26 @@ export default function DataBoard() {
     <div className="flex-col flex items-center justify-center text-center">
       <div
         className="w-full flex-col bg-white rounded-2xl p-2"
-        style={{ height: "500px" }}
+        style={{ height: "400px" }}
       >
-        <BarsComponent data={data} sorted={sorted} />
+        <BarsComponent data={data} sorted={sorted} right={right} left={left} startSort={startSort} />
       </div>
       <div className="flex text-center m-6 justify-center">
         <Button
           variant={"secondary"}
-          className="m-4 font-bold text-2xl"
+          className="mt-8 font-bold text-xl"
           onClick={() => handelSort("bubbleSort")}
         >
           Bubble Sort
         </Button>
         <Button
           variant={"destructive"}
-          className="m-4 font-bold text-2xl"
+          className="mt-8 ml-4 font-bold text-xl"
           onClick={() => reinitializeData()}
         >
           Try it again
         </Button>
       </div>
-      {sorted && (
-        <div className="w-1/2 h-20 rounded-2xl flex flex-col bg-green-600 items-center justify-cente text-center">
-          <h1 className="text-2xl text-white font-bold mt-5"> Data Sorted! </h1>
-        </div>
-      )}
     </div>
   );
 }

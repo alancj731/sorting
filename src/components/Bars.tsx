@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-const BarsComponent = ({ data, sorted }: { data: number[]; sorted: boolean }) => {
+const BarsComponent = ({ data, sorted, left, right, startSort }: { data: number[]; sorted: boolean, left: number, right:number, startSort: boolean }) => {
   // Generate an array of 50 elements with random heights
   const [bars, setBars] = useState<number[]>([]);
-  const [dataSorted, setDataSorted] = useState(false);
   useEffect(() => {
     setBars(data);
   }, [data, sorted]);
@@ -14,7 +13,7 @@ const BarsComponent = ({ data, sorted }: { data: number[]; sorted: boolean }) =>
       {bars.length > 0 && (
         <div
           className="flex rounded-2xl"
-          style={{ height: "480px" }}
+          style={{ height: "380px" }}
         >
           {bars.map((height, index) => (
             <div
@@ -22,7 +21,7 @@ const BarsComponent = ({ data, sorted }: { data: number[]; sorted: boolean }) =>
               style={{
                 width: "2%", // Sets the width of each bar to be 2% of the container's width
                 height: `${height}%`, // Random height for each bar
-                background: sorted ? "#059669" : "#333",
+                background: startSort? sorted ? "#059669" : index > right ? "rgb(56 189 248)" : index===left? "rgb(252 165 165)" : "#333" : "#333",
                 margin: "0.3%", // Adds a little space between bars
               }}
             />
